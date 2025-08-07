@@ -74,10 +74,7 @@ def setup_handlers(dp, bot):
 
     @dp.message(lambda message: message.photo)
     async def handle_receipt(message: types.Message):
-        if message.caption:
-            caption = message.caption
-        else:
-            caption = f"🧾 Чек от @{message.from_user.username} (ID: {message.from_user.id})"
+        caption = message.caption or f"🧾 Чек от @{message.from_user.username} (ID: {message.from_user.id})"
         await bot.send_photo(chat_id=ADMIN_ID, photo=message.photo[-1].file_id, caption=caption)
         await message.reply("✅ Чек получен! Мы проверим и вскоре свяжемся с вами.")
 
