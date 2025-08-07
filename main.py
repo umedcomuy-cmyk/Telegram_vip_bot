@@ -4,12 +4,12 @@ import asyncio
 from config import BOT_TOKEN
 
 bot = Bot(token=BOT_TOKEN, parse_mode=types.ParseMode.HTML)
-dp = Dispatcher()
+dp = Dispatcher(bot)
 
 setup_handlers(dp, bot)
 
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling()
 
 if __name__ == '__main__':
     asyncio.run(main())
